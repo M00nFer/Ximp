@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MSJ</title>
+    <meta name="description" content="">
+    <meta name="author" content="Francisco Esparza (@Moon_RM)">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <!-- iPhone -->
+    <link href="http://cdn.tapquo.com/lungo/icon-57.png" sizes="57x57" rel="apple-touch-icon">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+    <!-- iPhone (Retina) -->
+    <link href="http://cdn.tapquo.com/lungo/icon-114.png" sizes="114x114" rel="apple-touch-icon">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- iPhone 5 -->
+    <link href="http://cdn.tapquo.com/lungo/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- iPad -->
+    <link href="http://cdn.tapquo.com/lungo/icon-72.png" sizes="72x72" rel="apple-touch-icon">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+    <!-- iPad (Retina) -->
+    <link href="http://cdn.tapquo.com/lungo/icon-144.png" sizes="144x144" rel="apple-touch-icon">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="http://cdn.tapquo.com/lungo/startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="components/lungo.brownie/lungo.css">
+    <link rel="stylesheet" href="components/lungo.brownie/lungo.theme.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="components/lungo.icon/lungo.icon.css">
+    <!-- App Stylesheet -->
+    <link rel="stylesheet" href="static/stylesheets/app.css">
+</head>
+
+<body>
+<!--===============================================SECTIONS=============================================-->
+    <!--             welcome        -->
+    <section id="welcome" data-transition="cover" class="">
+        <article id="wel-art" class="active splash">
+            <img src="images/logo.png" class="logo"/>
+            <div class="form">
+                <div class="text">
+                    <p>
+                        Esta aplicacion fue creada con el motivo de 
+                        implementar tecnologias libres en un medio de 
+                        mensajeria instantanea y llevar las a la genta
+                    </p><br>
+                    <p>
+                        Este proyecto es para todos y de todos!
+                    </p>
+                </div><br>
+                <button data-icon="ok" data-label="Entrar" data-view-section="login"></button>
+            </div>
+        </article>
+    </section>
+
+    <!--            Login          -->
+    <section id="login" data-transition="slide">
+        <header data-title="Bienvenido">
+            <nav class="left">
+                <a href="#" data-icon="chevron-left" data-view-section="welcome"></a>
+            </nav>
+        </header>
+        <article class="active splash">
+            <div class="form">
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="text" placeholder="Ingresa tu email" id="txtUser" value="">
+                </fieldset>
+                <fieldset class="radius-bottom shadow" data-icon="lock">
+                    <input type="password" placeholder="Ingresa tu contraseña" id="txtPass" value="">
+                </fieldset>
+                <br/>
+                <button class="button anchor accept margin-bottom" data-icon="signin" data-label="Ingresar" data-view-section="principal"></button>
+            </div>
+        </article>
+    </section>
+
+
+    <!--         principal       -->
+    <section id="principal" data-transition="slide" data-aside="features">
+        <header data-title="MSJ">
+            <nav>
+                <a href="#" data-view-aside="features" data-icon="menu"></a>
+            </nav>
+            <nav class="right">
+                <button data-icon="user" data-label="Contactos" data-view-section="contacts"></button>
+            </nav>
+        </header>
+        <article class="active list idented scroll">
+            <ul>
+                <li>
+                </li>
+            </ul>
+        </article>
+    </section>
+
+
+    <!--              message            -->
+    <section id="msg" data-transition="slide" data-aside="opt-msg">
+        <header data-title="Nuevo Mensaje">
+            <nav class="left">
+                <a href="#" data-view-section="principal" data-icon="chevron-left"></a>
+            </nav>
+            <nav class="right">
+                <a href="#" data-view-aside="opt-msg" data-icon="plus"></a>
+            </nav>
+        </header>
+        <article class="active list idented scroll">
+            <ul>
+                <li>
+                    <div class="form">
+                        <fieldset>
+                            <textarea>
+                            </textarea>
+                        </fieldset>
+                        <fieldset>
+                            <input type="text" id="se-msg" placeholder="...">
+                        </fieldset>
+                    </div>
+                </li>
+            </ul>
+        </article>
+    </section>
+
+    <!--              message            -->
+    <section id="contacts" data-transition="slide">
+        <header data-title="Mis Contactos" data-back="chevron-left" data-icon="users">
+        </header>
+        <article class="active list idented scroll">
+            <ul>
+                <li>
+                </li>
+            </ul>
+        </article>
+    </section>
+
+<!--===========================================ASIDES===========================================-->
+
+    <!--          Aside features         -->
+    <aside id="features">
+        <header data-title="Crear">
+        </header>
+        <article class="list active idented scroll">
+            <ul>
+                <li class="current">
+                    <a href="#" data-icon="comment" data-view-section="msg">
+                        <strong>Nuevo Mensaje</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-icon="comments">
+                        <strong>Grupo</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-icon="">
+                        <strong>Acerca de</strong>
+                    </a>
+                </li>
+            </ul>
+        </article>
+    </aside>
+
+    <!--           Aside opt-msg          -->
+    <aside id="opt-msg" class="right" data-transition="right">
+        <header data-title="Contactos"></header>
+        <article class="list active idented scroll">
+            <ul>
+                <li class="current">
+                    <a href="#" data-icon="comment" data-view-section="msg">
+                        <strong>Nuevo Mensaje</strong>
+                    </a>
+                </li>
+            </ul>
+        </article>
+    </aside>
+
+
+    <!--===========================End Aplication===============================-->
+    <!-- Lungo dependencies -->
+    <script src="components/quojs/quo.js"></script>
+    <script src="components/lungo.brownie/lungo.debug.js"></script>
+    <!-- LungoJS - Sandbox App -->
+    <script>
+        Lungo.init({
+            name: 'MSJ',
+            version: '1.0',
+            history: false
+        });
+    </script>
+    <script src="static/javascripts/app.js"></script>
+</body>
+</html>
