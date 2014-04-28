@@ -1,0 +1,20 @@
+{
+  "version": "0.1",
+  "name": "FirstNote",
+  "description": "New app for create quicknotes",
+  "launch_path": "/index.html",
+  "icons": {
+    "48": "/img/icon.png"
+  },
+  "developer": {
+    "name": "Francisco Esparza"
+  },
+  "locales": {
+    "es": {
+      "description": "Nueva app ára crear notas rapidas",
+      "developer": {
+        "url": "http://yourawesomeapp.com"
+      }
+    },
+  "default_locale": "en"
+}
