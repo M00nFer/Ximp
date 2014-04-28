@@ -1,7 +1,7 @@
 {
   "version": "0.1",
-  "name": "FirstNote",
-  "description": "New app for create quicknotes",
+  "name": "free-msg",
+  "description": "App for messanger in XMPP",
   "launch_path": "/index.html",
   "icons": {
     "48": "/img/icon.png"
@@ -11,9 +11,9 @@
   },
   "locales": {
     "es": {
-      "description": "Nueva app ára crear notas rapidas",
+      "description": "App para mensajear en XMPP",
       "developer": {
-        "url": "http://yourawesomeapp.com"
+        "url": ""
       }
     },
   "default_locale": "en"
