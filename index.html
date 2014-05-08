@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>MSJ</title>
+    <title>Ximp</title>
     <meta name="description" content="">
     <meta name="author" content="Francisco Esparza (@Moon_RM)">
     <meta name="HandheldFriendly" content="True">
@@ -49,6 +49,10 @@
     <link rel="stylesheet" href="components/lungo.icon/lungo.icon.css">
     <!-- App Stylesheet -->
     <link rel="stylesheet" href="static/stylesheets/app.css">
+
+    <link rel="stylesheet" href="static/stylesheets/app.css">
+    <script src="js/app.js"></script>
+    <script src="js/strophe.js"></script>
 </head>
 
 <body>
@@ -56,9 +60,9 @@
     <!--             welcome        -->
     <section id="welcome" data-transition="cover" class="">
         <article id="wel-art" class="active splash">
-            <img src="images/logo.png" class="logo"/>
+            <img src="img/logo.png" class="logo"/>
             <div class="form">
-                <div class="text">
+            <div class="text">
                     <p>
                         Esta aplicacion fue creada con el motivo de 
                         implementar tecnologias libres en un medio de 
@@ -94,15 +98,31 @@
         </article>
     </section>
 
+    <!--             Log        -->
+    <section id="log-section" data-transition="cover" class="">
+        <article id="log-art" class="active splash">
+            <div class="form">
+                <form data-progress="5%">
+                    <div class="progress">
+                        <span class="bar">
+                            <span class="value" style="width:25%;"></span>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </section>
 
     <!--         principal       -->
     <section id="principal" data-transition="slide" data-aside="features">
-        <header data-title="MSJ">
+        <header data-title="XiMp">
             <nav>
                 <a href="#" data-view-aside="features" data-icon="menu"></a>
             </nav>
             <nav class="right">
-                <button data-icon="user" data-label="Contactos" data-view-section="contacts"></button>
+                <fieldset>
+                    <button data-icon="user" data-view-section="contacts"></button>
+                </fieldset>
             </nav>
         </header>
         <article class="active list idented scroll">
@@ -141,15 +161,36 @@
         </article>
     </section>
 
-    <!--              message            -->
+    <!--              Contacts            -->
     <section id="contacts" data-transition="slide">
         <header data-title="Mis Contactos" data-back="chevron-left" data-icon="users">
+            <nav class="right">
+                <button data-icon="plus" data-view-section="add-contacts"></button>
+            </nav>
         </header>
         <article class="active list idented scroll">
             <ul>
                 <li>
                 </li>
             </ul>
+        </article>
+    </section>
+
+    <!--             Add Contact        -->
+    <section id="add-contacts" data-transition="slide">
+        <header data-title="Nuevo Contacto" data-back="chevron-left" data-icon="users">
+        </header>
+        <article class="active splash">
+            <div class="form">
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="text" placeholder="JID" id="jid">
+                </fieldset>
+                <fieldset class="radius-bottom shadow" data-icon="lock">
+                    <input type="text" placeholder="Nombre" id="name">
+                </fieldset>
+                <br/>
+                <button class="button anchor accept margin-bottom" data-icon="signin" data-label="Agregar"></button>
+            </div>
         </article>
     </section>
 
