@@ -13,7 +13,8 @@ This file is in charge of making the main processes talks
 The client worked mediate the XMPP protocol and BOSH service
 */
 
-//Variables necesarias para la conexion
+//Variables para la conexion
+//Conection variables
 Ximp = {
 	var BOSH_SERVICE = 'http://localhost:7070/http-bind/'
 	var connection = null;
@@ -30,6 +31,7 @@ Ximp = {
             var name = $(this).attr('name') || jid;
 
             // transform jid into an id
+            // transformar el JID en un id
             var jid_id = Ximp.jid_to_id(jid);
 
             var contact = $("<li id='" + jid_id + "'>" +
@@ -89,7 +91,159 @@ Ximp = {
         return true;
     },
 	
-}
-$(document).ready(function () {
+	on_roster_changed: function (iq) {
+        $(iq).find('item').each(function () {
+            var sub = $(this).attr('subscription');
+            var jid = $(this).attr('jid');
+            var name = $(this).attr('name') || jid;
+            var jid_id = Ximp.jid_to_id(jid);
 
-});
+            if (sub === 'remove') {
+                // contact is being removed
+                $('#' + jid_id).remove();
+            } else {
+                // contact is being added or modified
+                var contact_html = "<li id='" + jid_id + "'>" +
+                    "<div class='" + 
+                    ($('#' + jid_id).attr('class') || "roster-contact offline") +
+                    "'>" +
+                    "<div class='roster-name'>" +
+                    name +
+                    "</div><div class='roster-jid'>" +
+                    jid +
+                    "</div></div></li>";
+
+                if ($('#' + jid_id).length > 0) {
+                    $('#' + jid_id).replaceWith(contact_html);
+                } else {
+                    Ximp.insert_contact($(contact_html));
+                }
+            }
+        });
+
+        return true;
+    },
+
+    on_message: function (message) {
+        var full_jid = $(message).attr('from');
+        var jid = Strophe.getBareJidFromJid(full_jid);
+        var jid_id = Ximp.jid_to_id(jid);
+
+        if ($('#chat-' + jid_id).length === 0) {
+            $('#chat-area').tabs('add', '#chat-' + jid_id, jid);
+            $('#chat-' + jid_id).append(
+                "<div class='chat-messages'></div>" +
+                "<input type='text' class='chat-input'>");
+        }
+        
+        $('#chat-' + jid_id).data('jid', full_jid);
+
+        $('#chat-area').tabs('select', '#chat-' + jid_id);
+        $('#chat-' + jid_id + ' input').focus();
+
+        var composing = $(message).find('composing');
+        if (composing.length > 0) {
+            $('#chat-' + jid_id + ' .chat-messages').append(
+                "<div class='chat-event'>" +
+                Strophe.getNodeFromJid(jid) +
+                " is typing...</div>");
+
+            Ximp.scroll_chat(jid_id);
+        }
+
+        var body = $(message).find("html > body");
+
+        if (body.length === 0) {
+            body = $(message).find('body');
+            if (body.length > 0) {
+                body = body.text()
+            } else {
+                body = null;
+            }
+        } else {
+            body = body.contents();
+
+            var span = $("<span></span>");
+            body.each(function () {
+                if (document.importNode) {
+                    $(document.importNode(this, true)).appendTo(span);
+                } else {
+                    // IE workaround
+                    span.append(this.xml);
+                }
+            });
+
+            body = span;
+        }
+
+        if (body) {
+            // remove notifications since user is now active
+            $('#chat-' + jid_id + ' .chat-event').remove();
+
+            // add the new message
+            $('#chat-' + jid_id + ' .chat-messages').append(
+                "<div class='chat-message'>" +
+                "&lt;<span class='chat-name'>" +
+                Strophe.getNodeFromJid(jid) +
+                "</span>&gt;<span class='chat-text'>" +
+                "</span></div>");
+
+            $('#chat-' + jid_id + ' .chat-message:last .chat-text')
+                .append(body);
+
+            Ximp.scroll_chat(jid_id);
+        }
+
+        return true;
+    },
+
+    scroll_chat: function (jid_id) {
+        var div = $('#chat-' + jid_id + ' .chat-messages').get(0);
+        div.scrollTop = div.scrollHeight;
+    },
+
+
+    presence_value: function (elem) {
+        if (elem.hasClass('online')) {
+            return 2;
+        } else if (elem.hasClass('away')) {
+            return 1;
+        }
+
+        return 0;
+    },
+
+    insert_contact: function (elem) {
+        var jid = elem.find('.roster-jid').text();
+        var pres = Gab.presence_value(elem.find('.roster-contact'));
+        
+        var contacts = $('#roster-area li');
+
+        if (contacts.length > 0) {
+            var inserted = false;
+            contacts.each(function () {
+                var cmp_pres = Gab.presence_value(
+                    $(this).find('.roster-contact'));
+                var cmp_jid = $(this).find('.roster-jid').text();
+
+                if (pres > cmp_pres) {
+                    $(this).before(elem);
+                    inserted = true;
+                    return false;
+                } else if (pres === cmp_pres) {
+                    if (jid < cmp_jid) {
+                        $(this).before(elem);
+                        inserted = true;
+                        return false;
+                    }
+                }
+            });
+
+            if (!inserted) {
+                $('#roster-area ul').append(elem);
+            }
+        } else {
+            $('#roster-area ul').append(elem);
+        }
+    }
+};
