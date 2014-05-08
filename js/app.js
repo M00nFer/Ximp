@@ -215,14 +215,14 @@ Ximp = {
 
     insert_contact: function (elem) {
         var jid = elem.find('.roster-jid').text();
-        var pres = Gab.presence_value(elem.find('.roster-contact'));
+        var pres = Ximp.presence_value(elem.find('.roster-contact'));
         
         var contacts = $('#roster-area li');
 
         if (contacts.length > 0) {
             var inserted = false;
             contacts.each(function () {
-                var cmp_pres = Gab.presence_value(
+                var cmp_pres = Ximp.presence_value(
                     $(this).find('.roster-contact'));
                 var cmp_jid = $(this).find('.roster-jid').text();
 
